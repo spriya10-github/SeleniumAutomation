@@ -1,0 +1,40 @@
+package automationFramework;
+
+import java.util.Random;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.JavascriptExecutor;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class FirstTestClass {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\shree.priya\\IdeaProjects\\selenium\\drivers\\chromedriver.exe");
+		WebDriver driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		String url="https://www.facebook.com/";
+		driver.get(url);
+		driver.findElement(By.xpath("//input[@name='firstname']")).sendKeys("FirstName");
+		driver.findElement(By.xpath("//input[@name='lastname']")).sendKeys("LastName");
+		Random randomGenerator=new Random();
+		int randomInt=randomGenerator.nextInt(1000);
+		String emailAddress="username"+randomInt+"@gmail.com";
+		driver.findElement(By.xpath("//input[@name='reg_email__']")).sendKeys(emailAddress);
+		driver.findElement(By.xpath("//input[@name='reg_email_confirmation__']")).sendKeys(emailAddress);
+		driver.findElement(By.xpath("//input[@name='reg_passwd__']")).sendKeys("Test@1234");
+		driver.findElement(By.xpath("//select[@name='birthday_day']")).sendKeys("10");
+		driver.findElement(By.xpath("//select[@name='birthday_month']")).sendKeys("Oct");
+		driver.findElement(By.xpath("//select[@name='birthday_year']")).sendKeys("1992");
+		driver.findElement(By.xpath("//span[@class='_5k_2 _5dba']/label")).click();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,1000000000)");
+		driver.findElement(By.xpath("//button[@name='websubmit']")).click();
+		
+
+	}
+
+}
